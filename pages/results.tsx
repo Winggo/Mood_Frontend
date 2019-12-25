@@ -1,9 +1,16 @@
-import React from 'react'
-import Head from 'next/head'
-import Link from 'next/link'
-import fetch from 'isomorphic-unfetch'
+import React from 'react';
+import Head from 'next/head';
+import Link from 'next/link';
+import fetch from 'isomorphic-unfetch';
+import { NextPage } from 'next';
 
-const Results = (props) => {
+interface resultsProps {
+    query: string,
+    numTweets: number,
+    tweets: Array<String>,
+}
+
+const Results: NextPage<resultsProps> = (props) => {
     return (
         <div>
             <Head>
@@ -33,19 +40,18 @@ const Results = (props) => {
 }
 
 Results.getInitialProps = async ({query}) => {
-    console.log('http://localhost:5000/' + query['q'])
+    console.log('http://localhost:5000/' + query['q']);
     const res = await fetch('http://localhost:5000/' + query['q'], {
         headers: {
             'Content-Type': 'application/json',
         },
     });
     const data = await res.json();
-    console.log(data['numTweets'])
     return {
         'query': data['query'],
         'tweets': data['tweets'],
         'numTweets': data['numTweets'],
-    }
+    };
 }
 
-export default Results
+export default Results;

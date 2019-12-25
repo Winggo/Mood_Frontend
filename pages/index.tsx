@@ -1,20 +1,21 @@
-import React, { useEffect } from 'react'
-import Head from 'next/head'
-import Router from 'next/router'
-import NProgress from 'nprogress'
+import React, { useEffect, KeyboardEvent } from 'react';
+import Head from 'next/head';
+import Router from 'next/router';
+import NProgress from 'nprogress';
+import { NextPage } from 'next';
 
 
-Router.events.on('routeChangeStart', url => {
+Router.events.on('routeChangeStart', (url: string) => {
   NProgress.start();
 })
 Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
 
 
-const onSubmit = (e) => {
+const onSubmit = (e: KeyboardEvent) => {
   if(e.keyCode === 13) {
     e.preventDefault();
-    let query = document.getElementById('searchBox').value;
+    let query: string = (document.getElementById('searchBox') as HTMLInputElement).value;
     Router.push({
       pathname: '/results',
       query: {'q': query}
@@ -22,7 +23,7 @@ const onSubmit = (e) => {
   }
 }
 
-const Home = () => {
+const Home: NextPage = () => {
   useEffect(() => {
     document.getElementById('searchBox').focus();
   }, [])
@@ -71,4 +72,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Home;

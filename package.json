@@ -14,5 +14,10 @@
     "nprogress": "^0.2.0",
     "react": "16.12.0",
     "react-dom": "16.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "^13.1.0",
+    "@types/react": "^16.9.17",
+    "typescript": "^3.7.4"
   }
 }
