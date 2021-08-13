@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "isomorphic-unfetch": "^3.0.0",
-    "next": "9.3.2",
+    "next": "11.1.0",
     "next-router-events": "^2.1.0",
     "nprogress": "^0.2.0",
     "react": "16.12.0",
